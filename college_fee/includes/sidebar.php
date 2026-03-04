@@ -1,10 +1,17 @@
 <!-- Sidebar Component -->
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <span class="logo-icon">🎓</span>
+        <button class="sidebar-close-btn" onclick="toggleSidebar()" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <span class="logo-icon">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRazCuo2Vr0aewN5dPW1mYCon5rn00XcXEOfQ&s" 
+                 alt="College Logo" class="sidebar-logo">
+        </span>
         <h2>College Fee System</h2>
         <small>Management Portal</small>
     </div>
+
     <ul class="sidebar-menu">
         <li class="menu-label">Main</li>
         <li>
@@ -12,6 +19,7 @@
                 <i class="fas fa-tachometer-alt"></i> Dashboard
             </a>
         </li>
+
         <li class="menu-label">Students</li>
         <li>
             <a href="add_student.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'add_student.php' ? 'active' : ''; ?>">
@@ -23,6 +31,7 @@
                 <i class="fas fa-users"></i> Manage Students
             </a>
         </li>
+
         <li class="menu-label">Fees</li>
         <li>
             <a href="fee_payment.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'fee_payment.php' ? 'active' : ''; ?>">
@@ -34,6 +43,7 @@
                 <i class="fas fa-history"></i> Payment History
             </a>
         </li>
+
         <li class="menu-label">Reports</li>
         <li>
             <a href="reports.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'reports.php' ? 'active' : ''; ?>">
@@ -45,6 +55,7 @@
                 <i class="fas fa-receipt"></i> Print Receipt
             </a>
         </li>
+
         <li class="menu-label">Account</li>
         <li>
             <a href="logout.php" style="color:#ef4444;" onclick="return confirm('Are you sure you want to logout?');">

@@ -68,8 +68,20 @@ if (isset($_GET['success'])) {
     $msg_type = "success";
 }
 
-// Get all active students for dropdown
-$all_students = $conn->query("SELECT student_id, name, course, semester FROM students WHERE status='active' ORDER BY name");
+// Filter values
+$filter_course = isset($_GET['filter_course']) ? sanitize($conn, $_GET['filter_course']) : '';
+$filter_semester = isset($_GET['filter_semester']) ? intval($_GET['filter_semester']) : 0;
+
+// Build student query with filters
+$stu_where = "WHERE status='active'";
+if ($filter_course) $stu_where .= " AND course = '$filter_course'";
+if ($filter_semester) $stu_where .= " AND semester = $filter_semester";
+
+$all_students = $conn->query("SELECT student_id, name, course, semester FROM students $stu_where ORDER BY name");
+
+// Get distinct courses and semesters for filter dropdowns
+$courses_list = $conn->query("SELECT DISTINCT course FROM students WHERE status='active' ORDER BY course");
+$semesters_list = $conn->query("SELECT DISTINCT semester FROM students WHERE status='active' ORDER BY semester");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,15 +106,48 @@ $all_students = $conn->query("SELECT student_id, name, course, semester FROM stu
                 </div>
             <?php endif; ?>
 
-            <!-- Student Selection -->
+            <!-- Student Selection with Filters -->
             <div class="content-card animate-in">
                 <div class="card-header">
                     <h3><i class="fas fa-search"></i> Select Student</h3>
                 </div>
                 <div class="card-body">
-                    <form method="GET" class="form-row">
-                        <div class="form-group" style="flex:1;">
-                            <label>Choose Student <span class="required">*</span></label>
+                    <form method="GET" id="studentFilterForm">
+                        <div class="filter-bar" style="margin-bottom:16px;">
+                            <div class="form-group" style="margin-bottom:0;min-width:160px;">
+                                <label style="font-size:12px;">Filter by Degree/Course</label>
+                                <select name="filter_course" class="form-control" onchange="this.form.submit()">
+                                    <option value="">All Courses</option>
+                                    <?php while($c = $courses_list->fetch_assoc()): ?>
+                                    <option value="<?php echo htmlspecialchars($c['course']); ?>" <?php echo $filter_course==$c['course']?'selected':''; ?>>
+                                        <?php echo htmlspecialchars($c['course']); ?>
+                                    </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;min-width:160px;">
+                                <label style="font-size:12px;">Filter by Semester</label>
+                                <select name="filter_semester" class="form-control" onchange="this.form.submit()">
+                                    <option value="0">All Semesters</option>
+                                    <?php while($sm = $semesters_list->fetch_assoc()): ?>
+                                    <option value="<?php echo $sm['semester']; ?>" <?php echo $filter_semester==$sm['semester']?'selected':''; ?>>
+                                        Semester <?php echo $sm['semester']; ?>
+                                    </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;align-self:flex-end;">
+                                <a href="fee_payment.php" class="btn btn-outline btn-sm" style="margin-top:20px;"><i class="fas fa-times"></i> Clear Filters</a>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label>Choose Student <span class="required">*</span>
+                                <?php if($filter_course || $filter_semester): ?>
+                                <small style="color:var(--primary);font-weight:400;margin-left:8px;">
+                                    (Showing: <?php echo $filter_course ? $filter_course : 'All Courses'; ?> | <?php echo $filter_semester ? 'Sem '.$filter_semester : 'All Semesters'; ?> — <?php echo $all_students->num_rows; ?> students)
+                                </small>
+                                <?php endif; ?>
+                            </label>
                             <select name="sid" class="form-control" onchange="this.form.submit()" required>
                                 <option value="">-- Select Student --</option>
                                 <?php while($s = $all_students->fetch_assoc()): ?>
