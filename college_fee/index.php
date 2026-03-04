@@ -293,5 +293,6 @@ while ($row = $course_data->fetch_assoc()) {
             }
         });
     </script>
+    <?php include 'includes/confirm_popup.php'; ?>
 </body>
 </html>

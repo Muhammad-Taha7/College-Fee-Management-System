@@ -141,5 +141,6 @@ $total_filtered = $total_result->fetch_assoc()['total'];
             </div>
         </div>
     </div>
+    <?php include 'includes/confirm_popup.php'; ?>
 </body>
 </html>

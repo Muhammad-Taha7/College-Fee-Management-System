@@ -5,7 +5,7 @@
             <i class="fas fa-times"></i>
         </button>
         <span class="logo-icon">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRazCuo2Vr0aewN5dPW1mYCon5rn00XcXEOfQ&s" 
+            <img src="https://static.vecteezy.com/system/resources/previews/014/909/769/non_2x/abstract-initial-letter-t-or-tt-logo-in-blue-color-isolated-in-white-background-applied-for-software-engineering-logo-also-suitable-for-the-brands-or-companies-have-initial-name-tt-or-t-vector.jpg" 
                  alt="College Logo" class="sidebar-logo">
         </span>
         <h2>College Fee System</h2>
@@ -58,7 +58,7 @@
 
         <li class="menu-label">Account</li>
         <li>
-            <a href="logout.php" style="color:#ef4444;" onclick="return confirm('Are you sure you want to logout?');">
+            <a href="javascript:void(0)" style="color:#ef4444;" onclick="confirmLogout('logout.php')">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a>
         </li>

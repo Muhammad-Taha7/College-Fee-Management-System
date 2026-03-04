@@ -165,11 +165,10 @@ if (isset($_GET['edit'])) {
                                             <a href="?edit=<?php echo $row['student_id']; ?>" class="btn btn-info btn-sm" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="?toggle=<?php echo $row['student_id']; ?>" class="btn btn-warning btn-sm" title="Toggle Status">
+                                            <a href="javascript:void(0)" onclick="confirmToggle('?toggle=<?php echo $row['student_id']; ?>', '<?php echo htmlspecialchars(addslashes($row['name'])); ?>')" class="btn btn-warning btn-sm" title="Toggle Status">
                                                 <i class="fas fa-sync"></i>
                                             </a>
-                                            <a href="?delete=<?php echo $row['student_id']; ?>" class="btn btn-danger btn-sm" 
-                                               onclick="return confirm('Are you sure you want to delete this student?');" title="Delete">
+                                            <a href="javascript:void(0)" onclick="confirmDelete('?delete=<?php echo $row['student_id']; ?>', '<?php echo htmlspecialchars(addslashes($row['name'])); ?>')" class="btn btn-danger btn-sm" title="Delete">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                             <a href="fee_payment.php?sid=<?php echo $row['student_id']; ?>" class="btn btn-success btn-sm" title="Pay Fee">
@@ -260,5 +259,28 @@ if (isset($_GET['edit'])) {
         </div>
     </div>
     <?php endif; ?>
+
+    <?php include 'includes/confirm_popup.php'; ?>
+    <script>
+    // Confirm before updating student
+    const editForm = document.querySelector('#editModal form');
+    if (editForm) {
+        editForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            showConfirm({
+                title: 'Do you want to update?',
+                message: 'Are you sure you want to save changes to this student record?',
+                icon: 'info',
+                yesText: 'Yes, Update',
+                btnColor: 'green',
+                onConfirm: function() {
+                    form.removeEventListener('submit', arguments.callee);
+                    form.submit();
+                }
+            });
+        });
+    }
+    </script>
 </body>
 </html>

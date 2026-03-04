@@ -21,7 +21,7 @@
             <div class="avatar"><i class="fas fa-user"></i></div>
             <span class="admin-name"><?php echo isset($_SESSION['admin_user']) ? htmlspecialchars($_SESSION['admin_user']) : 'Admin'; ?></span>
         </div>
-        <a href="logout.php" onclick="return confirm('Logout?');" class="logout-btn-topbar">
+        <a href="javascript:void(0)" onclick="confirmLogout('logout.php')" class="logout-btn-topbar">
             <i class="fas fa-sign-out-alt"></i><span class="logout-text"> Logout</span>
         </a>
     </div>

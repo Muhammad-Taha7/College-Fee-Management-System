@@ -368,5 +368,6 @@ $this_month = $conn->query("SELECT COALESCE(SUM(amount),0) as t FROM payments WH
         }
     });
     </script>
+    <?php include 'includes/confirm_popup.php'; ?>
 </body>
 </html>

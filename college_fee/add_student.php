@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-save"></i> Register Student
                             </button>
-                            <button type="reset" class="btn btn-outline">
+                            <button type="button" class="btn btn-outline" onclick="confirmReset(this)">
                                 <i class="fas fa-redo"></i> Reset Form
                             </button>
                         </div>
@@ -136,5 +136,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
+
+    <?php include 'includes/confirm_popup.php'; ?>
+    <script>
+    // Confirm before registering student
+    document.querySelector('form[method="POST"]').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = this;
+        showConfirm({
+            title: 'Do you want to register?',
+            message: 'Are you sure you want to register this new student in the system?',
+            icon: 'info',
+            btnColor: 'green',
+            yesText: 'Yes, Register',
+            onConfirm: function() {
+                form.removeEventListener('submit', arguments.callee);
+                form.submit();
+            }
+        });
+    });
+
+    // Confirm before resetting form
+    function confirmReset(btn) {
+        showConfirm({
+            title: 'Do you want to reset?',
+            message: 'All filled data will be cleared. Are you sure?',
+            icon: 'warning',
+            btnColor: 'orange',
+            yesText: 'Yes, Reset',
+            onConfirm: function() {
+                btn.closest('form').reset();
+            }
+        });
+    }
+    </script>
 </body>
 </html>

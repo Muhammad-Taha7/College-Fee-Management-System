@@ -297,5 +297,29 @@ $semesters_list = $conn->query("SELECT DISTINCT semester FROM students WHERE sta
             <?php endif; ?>
         </div>
     </div>
+
+    <?php include 'includes/confirm_popup.php'; ?>
+    <script>
+    // Confirm before processing payment
+    const payForm = document.querySelector('form[method="POST"]');
+    if (payForm) {
+        payForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const amount = form.querySelector('input[name="amount"]').value;
+            showConfirm({
+                title: 'Do you want to process payment?',
+                message: 'Are you sure you want to process a payment of ₹' + Number(amount).toLocaleString() + '? This action cannot be undone.',
+                icon: 'success',
+                btnColor: 'green',
+                yesText: 'Yes, Process Payment',
+                onConfirm: function() {
+                    form.removeEventListener('submit', arguments.callee);
+                    form.submit();
+                }
+            });
+        });
+    }
+    </script>
 </body>
 </html>

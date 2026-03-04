@@ -204,5 +204,6 @@ $all_receipts = $conn->query("
         el.textContent = numberToWords(<?php echo $payment ? $payment['amount'] : 0; ?>);
     }
     </script>
+    <?php include 'includes/confirm_popup.php'; ?>
 </body>
 </html>
