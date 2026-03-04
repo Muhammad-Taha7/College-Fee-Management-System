@@ -222,34 +222,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             flex-direction: column;
             justify-content: center;
             animation: fadeInRight 0.7s ease forwards;
+            max-width: 500px;
+            margin: 0 auto;
         }
         .form-header {
-            margin-bottom: 28px;
+            margin-bottom: 32px;
+            text-align: center;
         }
         .form-header .welcome-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(37,99,235,0.08);
+            background: rgba(37,99,235,0.1);
             color: #2563eb;
-            padding: 6px 14px;
-            border-radius: 20px;
+            padding: 8px 16px;
+            border-radius: 24px;
             font-size: 12px;
             font-weight: 600;
             margin-bottom: 16px;
+            border: 1px solid rgba(37,99,235,0.2);
         }
         .form-header h2 {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             color: #1e293b;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
         .form-header p {
-            font-size: 13px;
+            font-size: 14px;
             color: #64748b;
+            line-height: 1.5;
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             position: relative;
         }
         .form-group label {
@@ -257,7 +263,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-size: 13px;
             font-weight: 600;
             color: #1e293b;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
         }
         .input-wrapper {
             position: relative;
@@ -267,26 +275,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             left: 14px;
             top: 50%;
             transform: translateY(-50%);
-            color: #94a3b8;
+            color: #cbd5e1;
             font-size: 16px;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
             pointer-events: none;
         }
         .input-wrapper input {
             width: 100%;
-            padding: 13px 14px 13px 44px;
+            padding: 14px 14px 14px 44px;
             border: 2px solid #e2e8f0;
             border-radius: 12px;
             font-size: 14px;
             font-family: 'Poppins', sans-serif;
             color: #1e293b;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             background: #f8fafc;
+        }
+        .input-wrapper input::placeholder {
+            color: #cbd5e1;
+        }
+        .input-wrapper input:hover {
+            border-color: #cbd5e1;
+            background: #fff;
         }
         .input-wrapper input:focus {
             outline: none;
             border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+            box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
             background: #fff;
         }
         .input-wrapper input:focus ~ i.field-icon {
@@ -299,29 +314,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             transform: translateY(-50%);
             background: none;
             border: none;
-            color: #94a3b8;
+            color: #cbd5e1;
             cursor: pointer;
             font-size: 16px;
-            padding: 4px;
+            padding: 6px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .toggle-password:hover { color: #2563eb; }
+        .toggle-password:hover { 
+            color: #2563eb;
+            transform: translateY(-50%) scale(1.1);
+        }
         .error-msg {
             background: rgba(239, 68, 68, 0.08);
             color: #dc2626;
-            padding: 12px 16px;
+            padding: 14px 16px;
             border-radius: 10px;
             font-size: 13px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             border: 1px solid rgba(239,68,68,0.15);
             animation: shake 0.4s ease;
+            font-weight: 500;
+        }
+        .error-msg i {
+            flex-shrink: 0;
+            font-size: 16px;
         }
         .btn-login {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            padding: 16px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: #fff;
             border: none;
             border-radius: 12px;
@@ -329,38 +356,76 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            letter-spacing: 0.3px;
-            margin-top: 6px;
+            letter-spacing: 0.4px;
+            margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(37,99,235,0.15);
         }
         .btn-login:hover {
-            background: linear-gradient(135deg, #1d4ed8, #1e40af);
-            box-shadow: 0 8px 25px rgba(37,99,235,0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            box-shadow: 0 8px 30px rgba(37,99,235,0.35);
             transform: translateY(-2px);
         }
-        .btn-login:active { transform: translateY(0); }
+        .btn-login:active { 
+            transform: translateY(0);
+        }
         .login-footer-text {
             text-align: center;
-            margin-top: 24px;
+            margin-top: 28px;
             font-size: 12px;
             color: #94a3b8;
+            line-height: 1.6;
         }
-        .login-footer-text span { color: #2563eb; font-weight: 500; }
+        .login-footer-text span { 
+            color: #2563eb; 
+            font-weight: 600;
+        }
 
         /* ===== RESPONSIVE ===== */
+        /* Tablets & Mobile: hide left info, show only form */
+        @media (max-width: 1024px) {
+            .login-card {
+                flex-direction: column;
+                min-height: 100vh;
+                border-radius: 0;
+                margin: 0;
+                box-shadow: none;
+            }
+            .login-left {
+                display: none;
+            }
+            .login-right {
+                padding: 48px 32px;
+                flex: 1;
+                width: 100%;
+                max-width: 100%;
+                justify-content: center;
+            }
+            .form-header {
+                margin-bottom: 30px;
+            }
+            .form-header h2 {
+                font-size: 26px;
+            }
+            .form-header p {
+                font-size: 13px;
+            }
+        }
+
         @media (max-width: 768px) {
             .login-card {
                 flex-direction: column;
-                min-height: auto;
-                border-radius: 16px;
-                margin: 16px;
-                box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+                min-height: 100vh;
+                border-radius: 0;
+                margin: 0;
+                box-shadow: none;
             }
             .login-left {
+                display: none;
                 padding: 32px 28px;
             }
             .left-content h1 {
@@ -378,10 +443,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 margin-top: 20px;
             }
             .login-right {
-                padding: 32px 28px;
+                padding: 40px 28px;
+                flex: 1;
+            }
+            .form-header {
+                margin-bottom: 28px;
             }
             .form-header h2 {
-                font-size: 20px;
+                font-size: 24px;
+            }
+            .form-header p {
+                font-size: 13px;
+            }
+            .form-group {
+                margin-bottom: 20px;
+            }
+            .btn-login {
+                padding: 14px;
+                font-size: 14px;
             }
         }
         @media (max-width: 480px) {
@@ -399,8 +478,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 font-size: 19px;
             }
             .login-right {
-                padding: 28px 22px;
+                padding: 36px 22px;
+                flex: 1;
             }
+            .form-header {
+                margin-bottom: 24px;
+            }
+            .form-header .welcome-badge {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+            .form-header h2 {
+                font-size: 22px;
+                margin-bottom: 6px;
+            }
+            .form-header p {
+                font-size: 12px;
+            }
+            .form-group {
+                margin-bottom: 18px;
+            }
+            .form-group label {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+            .input-wrapper input {
+                padding: 12px 12px 12px 40px;
+                font-size: 14px;
+            }
+            .input-wrapper i.field-icon {
+                font-size: 14px;
+            }
+            .btn-login {
+                padding: 13px;
+                font-size: 13px;
+                gap: 6px;
+            }
+            .btn-login i {
+                font-size: 14px;
+            }
+            .login-footer-text {
+                margin-top: 20px;
+                font-size: 11px;
+            }
+        }
         }
     </style>
 </head>
