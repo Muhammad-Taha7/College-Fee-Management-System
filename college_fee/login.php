@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: stretch;
             justify-content: center;
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e3a5f 100%);
             position: relative;
@@ -97,25 +97,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 950px;
-            padding: 20px;
+            max-width: 100%;
+            padding: 0;
         }
         .login-card {
             background: rgba(255, 255, 255, 0.97);
             backdrop-filter: blur(20px);
-            border-radius: 24px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+            border-radius: 0;
+            box-shadow: none;
             overflow: hidden;
             display: flex;
-            min-height: 560px;
+            min-height: 100vh;
             animation: slideUp 0.6s ease forwards;
         }
 
         /* ===== LEFT SIDE - INFO PANEL ===== */
         .login-left {
-            flex: 1;
+            flex: 1.1;
             background: linear-gradient(160deg, #1e3a5f 0%, #1d4ed8 40%, #2563eb 100%);
-            padding: 48px 36px;
+            padding: 64px 56px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -216,8 +216,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         /* ===== RIGHT SIDE - FORM ===== */
         .login-right {
-            flex: 1;
-            padding: 48px 40px;
+            flex: 0.9;
+            padding: 64px 56px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -356,6 +356,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             .login-card {
                 flex-direction: column;
                 min-height: auto;
+                border-radius: 16px;
+                margin: 16px;
+                box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
             }
             .login-left {
                 padding: 32px 28px;
@@ -383,7 +386,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         @media (max-width: 480px) {
             .login-wrapper {
-                padding: 12px;
+                padding: 0;
             }
             .login-left {
                 padding: 28px 22px;
