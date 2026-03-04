@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: rgba(37, 99, 235, 0.12);
             border-radius: 50%;
             top: -150px; right: -150px;
-            animation: float 6s ease-in-out infinite;
         }
         body::after {
             content: '';
@@ -64,32 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: rgba(14, 165, 233, 0.08);
             border-radius: 50%;
             bottom: -100px; left: -100px;
-            animation: float 8s ease-in-out infinite reverse;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
         }
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
         }
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-8px); }
             75% { transform: translateX(8px); }
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
 
         /* ===== SPLIT LAYOUT ===== */
@@ -108,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             overflow: hidden;
             display: flex;
             min-height: 100vh;
-            animation: slideUp 0.6s ease forwards;
+            animation: slideUp 0.5s ease forwards;
         }
 
         /* ===== LEFT SIDE - INFO PANEL ===== */
@@ -122,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: #fff;
             position: relative;
             overflow: hidden;
-            animation: fadeInLeft 0.7s ease forwards;
         }
         .login-left::before {
             content: '';
@@ -152,7 +133,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-size: 36px;
             margin-bottom: 24px;
             border: 2px solid rgba(255,255,255,0.2);
-            animation: pulse 3s ease-in-out infinite;
         }
         .left-content h1 {
             font-size: 26px;
@@ -221,7 +201,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            animation: fadeInRight 0.7s ease forwards;
             max-width: 500px;
             margin: 0 auto;
         }
@@ -521,7 +500,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 margin-top: 20px;
                 font-size: 11px;
             }
-        }
         }
     </style>
 </head>

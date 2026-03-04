@@ -64,6 +64,9 @@ function numberToWords($num) {
     return trim($words);
 }
 
+// Get total paid for this semester
+$total_paid_sem = $conn->query("SELECT COALESCE(SUM(amount),0) as paid FROM payments WHERE student_id='{$data['student_id']}' AND semester={$data['semester']}")->fetch_assoc()['paid'];
+
 // ============== BUILD PDF ==============
 class FeeReceipt extends FPDF {
     function Header() {
@@ -202,9 +205,30 @@ if ($fee) {
 // Amount Paid row (Green)
 $pdf->SetFillColor(220, 252, 231);
 $pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(130, 10, 'AMOUNT PAID', 1, 0, 'R', true);
+$pdf->Cell(130, 10, 'AMOUNT PAID (This Receipt)', 1, 0, 'R', true);
 $pdf->SetTextColor(16, 185, 129);
 $pdf->Cell(60, 10, 'Rs. ' . number_format($data['amount'], 2), 1, 1, 'R', true);
+
+// Total Paid & Balance Due (if fee structure exists)
+if ($fee) {
+    $due = $fee['total_fee'] - $total_paid_sem;
+    $pdf->SetTextColor(30, 30, 30);
+    $pdf->SetFillColor(240, 245, 255);
+    $pdf->SetFont('Arial', 'B', 10);
+    $pdf->Cell(130, 9, 'Total Paid (Semester)', 1, 0, 'R', true);
+    $pdf->SetTextColor(37, 99, 235);
+    $pdf->Cell(60, 9, 'Rs. ' . number_format($total_paid_sem, 2), 1, 1, 'R', true);
+    
+    $pdf->SetTextColor(30, 30, 30);
+    $pdf->SetFillColor(255, 245, 245);
+    $pdf->Cell(130, 9, 'Balance Due', 1, 0, 'R', true);
+    if ($due > 0) {
+        $pdf->SetTextColor(239, 68, 68);
+    } else {
+        $pdf->SetTextColor(16, 185, 129);
+    }
+    $pdf->Cell(60, 9, 'Rs. ' . number_format(max(0, $due), 2), 1, 1, 'R', true);
+}
 
 $pdf->Ln(4);
 
@@ -236,17 +260,20 @@ $pdf->SetLineWidth(0.3);
 
 // Student Signature
 $pdf->SetX(15);
-$pdf->Line(15, $pdf->GetY(), 75, $pdf->GetY());
+$pdf->Line(15, $pdf->GetY(), 65, $pdf->GetY());
 $pdf->SetFont('Arial', '', 9);
 $pdf->SetTextColor(120, 120, 120);
-$pdf->Cell(65, 6, 'Student Signature', 0, 0, 'C');
+$pdf->Cell(55, 6, 'Student Signature', 0, 0, 'C');
 
-// Gap
-$pdf->Cell(55, 6, '', 0, 0);
+// Cashier
+$pdf->Cell(15, 6, '', 0, 0);
+$pdf->Line(85, $pdf->GetY() - 6, 135, $pdf->GetY() - 6);
+$pdf->Cell(55, 6, 'Cashier', 0, 0, 'C');
 
 // Authorized Signature
-$pdf->Line(135, $pdf->GetY() - 6, 195, $pdf->GetY() - 6);
-$pdf->Cell(65, 6, 'Authorized Signature', 0, 1, 'C');
+$pdf->Cell(15, 6, '', 0, 0);
+$pdf->Line(150, $pdf->GetY() - 6, 200, $pdf->GetY() - 6);
+$pdf->Cell(55, 6, 'Authorized Signature', 0, 1, 'C');
 
 // Stamp area
 $pdf->Ln(3);

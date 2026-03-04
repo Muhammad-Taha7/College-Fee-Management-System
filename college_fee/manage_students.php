@@ -119,6 +119,14 @@ if (isset($_GET['edit'])) {
                             <option value="MCA" <?php echo $filter_course == 'MCA' ? 'selected' : ''; ?>>MCA</option>
                             <option value="BSc IT" <?php echo $filter_course == 'BSc IT' ? 'selected' : ''; ?>>BSc IT</option>
                             <option value="MBA" <?php echo $filter_course == 'MBA' ? 'selected' : ''; ?>>MBA</option>
+                            <option value="B.Tech CS" <?php echo $filter_course == 'B.Tech CS' ? 'selected' : ''; ?>>B.Tech CS</option>
+                            <option value="BBA" <?php echo $filter_course == 'BBA' ? 'selected' : ''; ?>>BBA</option>
+                            <option value="B.Com" <?php echo $filter_course == 'B.Com' ? 'selected' : ''; ?>>B.Com</option>
+                            <option value="BA English" <?php echo $filter_course == 'BA English' ? 'selected' : ''; ?>>BA English</option>
+                            <option value="BSc Physics" <?php echo $filter_course == 'BSc Physics' ? 'selected' : ''; ?>>BSc Physics</option>
+                            <option value="M.Tech CS" <?php echo $filter_course == 'M.Tech CS' ? 'selected' : ''; ?>>M.Tech CS</option>
+                            <option value="MSc IT" <?php echo $filter_course == 'MSc IT' ? 'selected' : ''; ?>>MSc IT</option>
+                            <option value="B.Pharm" <?php echo $filter_course == 'B.Pharm' ? 'selected' : ''; ?>>B.Pharm</option>
                         </select>
                         <select name="status">
                             <option value="">All Status</option>
@@ -235,12 +243,20 @@ if (isset($_GET['edit'])) {
                                 <option value="MCA" <?php echo $edit_student['course']=='MCA'?'selected':''; ?>>MCA</option>
                                 <option value="BSc IT" <?php echo $edit_student['course']=='BSc IT'?'selected':''; ?>>BSc IT</option>
                                 <option value="MBA" <?php echo $edit_student['course']=='MBA'?'selected':''; ?>>MBA</option>
+                                <option value="B.Tech CS" <?php echo $edit_student['course']=='B.Tech CS'?'selected':''; ?>>B.Tech CS</option>
+                                <option value="BBA" <?php echo $edit_student['course']=='BBA'?'selected':''; ?>>BBA</option>
+                                <option value="B.Com" <?php echo $edit_student['course']=='B.Com'?'selected':''; ?>>B.Com</option>
+                                <option value="BA English" <?php echo $edit_student['course']=='BA English'?'selected':''; ?>>BA English</option>
+                                <option value="BSc Physics" <?php echo $edit_student['course']=='BSc Physics'?'selected':''; ?>>BSc Physics</option>
+                                <option value="M.Tech CS" <?php echo $edit_student['course']=='M.Tech CS'?'selected':''; ?>>M.Tech CS</option>
+                                <option value="MSc IT" <?php echo $edit_student['course']=='MSc IT'?'selected':''; ?>>MSc IT</option>
+                                <option value="B.Pharm" <?php echo $edit_student['course']=='B.Pharm'?'selected':''; ?>>B.Pharm</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Semester</label>
                             <select name="semester" class="form-control" required>
-                                <?php for($s=1; $s<=6; $s++): ?>
+                                <?php for($s=1; $s<=8; $s++): ?>
                                 <option value="<?php echo $s; ?>" <?php echo $edit_student['semester']==$s?'selected':''; ?>>Semester <?php echo $s; ?></option>
                                 <?php endfor; ?>
                             </select>

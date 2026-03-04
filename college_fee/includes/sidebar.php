@@ -39,6 +39,11 @@
             </a>
         </li>
         <li>
+            <a href="fee_structure.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'fee_structure.php' ? 'active' : ''; ?>">
+                <i class="fas fa-list-alt"></i> Fee Structure
+            </a>
+        </li>
+        <li>
             <a href="payment_history.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'payment_history.php' ? 'active' : ''; ?>">
                 <i class="fas fa-history"></i> Payment History
             </a>

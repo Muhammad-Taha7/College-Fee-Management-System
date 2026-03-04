@@ -93,10 +93,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <label>Course <span class="required">*</span></label>
                                 <select name="course" class="form-control" required>
                                     <option value="">-- Select Course --</option>
-                                    <option value="BCA">BCA</option>
-                                    <option value="MCA">MCA</option>
-                                    <option value="BSc IT">BSc IT</option>
-                                    <option value="MBA">MBA</option>
+                                    <option value="BCA">BCA - Bachelor of Computer Applications</option>
+                                    <option value="MCA">MCA - Master of Computer Applications</option>
+                                    <option value="BSc IT">BSc IT - Bachelor of Science in IT</option>
+                                    <option value="MBA">MBA - Master of Business Administration</option>
+                                    <option value="B.Tech CS">B.Tech CS - Bachelor of Technology</option>
+                                    <option value="BBA">BBA - Bachelor of Business Administration</option>
+                                    <option value="B.Com">B.Com - Bachelor of Commerce</option>
+                                    <option value="BA English">BA English - Bachelor of Arts</option>
+                                    <option value="BSc Physics">BSc Physics - Bachelor of Science</option>
+                                    <option value="M.Tech CS">M.Tech CS - Master of Technology</option>
+                                    <option value="MSc IT">MSc IT - Master of Science in IT</option>
+                                    <option value="B.Pharm">B.Pharm - Bachelor of Pharmacy</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -108,6 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <option value="4">Semester 4</option>
                                     <option value="5">Semester 5</option>
                                     <option value="6">Semester 6</option>
+                                    <option value="7">Semester 7</option>
+                                    <option value="8">Semester 8</option>
                                 </select>
                             </div>
                         </div>
